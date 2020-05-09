@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <img [src]="house?.image" alt="House" style="width: 100%;">
+            <div class="image-engagements py-2 bg-dark text-light">
+                <span class="comments font-weight-bold h4 mr-4"><i class="fa fa-comment"></i> {{ comments?.length }}</span>
+                <span class="likes font-weight-bold ml-4 h4" [ngClass]="{'text-primary': liked}" (click)="onLike(selectedHouse)"><i class="fa fa-heart"></i> {{ likes?.length }}</span>
+            </div>
+        </div>
+    </div>
+    <hr >
+
+    <div class="row mt-4">
+        <div class="col-md-12 bg-light">
+            <h2>About House</h2>
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4 class="mb-0">Type</h4>
+                    <p>{{ house?.type }}</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h4 class="mb-0">School</h4>
+                    <p>{{ house?.school }}</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h4 class="mb-0">Contact Phone</h4>
+                    <p>{{ house?.phone }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="mb-0">Address</h4>
+                    <p>{{ house?.address }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="mb-0">Description</h4>
+                    <p>{{ house?.description }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" id="comments">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body py-0">
+                    <h2>Comments</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-3" *ngIf="comments?.length === 0">
+            <div class="card border-0">
+                <div class="car-body">
+                    <h4>No comment yet</h4>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comment-con" *ngIf="comments?.length > 0">
+            <div class="col-md-12 " *ngFor="let comment of comments" style="width: 100%;">
+                <div class="card my-2">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-2 py-0 px-1">
+                                <img [src]="comment?.userImage" alt="Image" class="my-2 rounded-circle" style="width:inherit;">
+                            </div>
+        
+                            <div class="col-10">
+                                <div class="card-body p-0">
+                                    <h5 class="card-title mb-0"><a [routerLink]="['/profile', comment?.owner]">{{ comment?.name }}</a></h5>
+                                    <p>{{ comment?.postTime }}</p>
+    
+                                    <p class="text-justify">
+                                        {{ comment?.message }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <form [formGroup]="commentForm" (ngSubmit)="onComment(commentForm.value)">
+                <div class="form-group">
+                  <textarea type="text" class="form-control" id="message" formControlName="message" rows="6" placeholder="Your comment"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="!commentForm.valid">Comment</button>
+              </form>
+        </div>
+        
+    </div>
+</div>

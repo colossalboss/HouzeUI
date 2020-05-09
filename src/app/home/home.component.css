@@ -1,0 +1,15 @@
+.houses-con {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.con {
+    max-width: 300px !important;
+    min-width: 30%;
+    margin: .5rem;
+}
+
+.house-image {
+    width: 100%;
+}

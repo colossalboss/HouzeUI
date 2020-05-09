@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm.value)">
+                            <div class="form-group">
+                              <input type="text" class="form-control" #search (change)="onSearch(searchForm.value)" id="searchText" name="email" placeholder="Search by type, school, etc" formControlName="searchText" aria-describedby="emailHelp">
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary float-center" [disabled]="!searchForm.valid">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 px-0 houses-con">
+
+            <div class="con" *ngFor="let house of houses">
+                <a (click)="onSelect(house.id)" class="img-link">
+                    <img [src]="house.image" alt="" class="house-image">
+                    <h5 class="img-name mt-2">{{ house.type }}</h5>
+                </a>
+                <p class="text-justify">{{ house.description.slice(0, 100) }}...</p>
+            </div>
+
+        </div>
+    </div>
+</div>

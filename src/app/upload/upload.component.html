@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-5">
+                <div class="card-header">
+                    Fill in details of the house
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="house" (ngSubmit)="onPost(house.value)">
+                        <div class="form-group">
+                          <label for="imageUrl">Image Url</label>
+                          <input type="url" class="form-control" id="imageUrl"  formControlName="image" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="school">School</label>
+                          <input type="text" class="form-control" id="school" name="school" formControlName="school" placeholder="Which school area?" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="address" class="form-control" id="address" formControlName="address" aria-describedby="emailHelp">
+                          </div>
+
+                        <div class="form-group">
+                          <label for="type">Type</label>
+                          <input type="text" class="form-control" id="type" formControlName="type" placeholder="Flat, Self contain, etc" aria-describedby="emailHelp">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="phone">Phone</label>
+                          <input type="number" class="form-control" id="phone" formControlName="phone">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="description">Description</label>
+                          <textarea type="text" class="form-control" id="description" formControlName="description" rows="6"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" [disabled]="!house.valid">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
