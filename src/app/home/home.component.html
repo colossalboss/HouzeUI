@@ -6,7 +6,7 @@
                     <div class="col-md-6 offset-md-3">
                         <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm.value)">
                             <div class="form-group">
-                              <input type="text" class="form-control" #search (change)="onSearch(searchForm.value)" id="searchText" name="email" placeholder="Search by type, school, etc" formControlName="searchText" aria-describedby="emailHelp">
+                              <input type="text" class="form-control" #search (keyup)="onSearch(searchForm.value)" id="searchText" name="email" placeholder="Search by type, school, etc" formControlName="searchText" aria-describedby="emailHelp">
                             </div>
                             
                             <div class="text-center">

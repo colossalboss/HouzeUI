@@ -29,8 +29,12 @@ export class UploadComponent implements OnInit {
 
   onPost(houseDetails) {
     console.log(houseDetails);
-    this.auth.postHouse(houseDetails).subscribe(res => this.savedHouse = res);
-    this.router.navigate(['home']);
+    this.auth.postHouse(houseDetails).subscribe(res => {
+      if (res) {
+        this.savedHouse = res;
+        this.router.navigate(['home']);
+      }
+    });
   }
 
 }

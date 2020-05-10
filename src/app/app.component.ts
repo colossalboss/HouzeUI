@@ -32,7 +32,8 @@ export class AppComponent implements OnInit {
   getUser() {
     this.auth.getUser().subscribe(res => {
       this.user = res;
-      console.log(this.user, "visitor")
+      console.log(this.user);
+      
     })
   }
 }

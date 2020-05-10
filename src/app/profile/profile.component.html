@@ -1,7 +1,7 @@
 <div class="container-fluid" style="margin-top: 7rem;">
     <div class="row mt-4">
         <div class="col-md-4 text-center">
-            <img src="https://placehold.co/250x190" alt="Image" *ngIf="!user?.image" class="rounded-circle" style="width: inherit;">
+            <img src="https://placehold.co/250x190" alt="Image" *ngIf="!user?.image" class="rounded-circle" style="width: inherit; max-height: 200px;">
             <img [src]="user?.image" alt="Image of {{user?.name}}" class="rounded-circle" style="width: inherit;">
             <h2>{{ user?.name }}</h2>
             <h5>{{ user?.email }}</h5>
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 px-0 houses-con">
+        <div class="col-md-12 px-0 houses-con" *ngIf="houses?.length > 0">
 
             <div class="con" *ngFor="let house of houses">
                 <a (click)="onSelect(house?.id)" class="img-link">
@@ -33,6 +33,14 @@
                 <p class="text-justify">{{ house?.description.slice(0, 100) }}...</p>
             </div>
 
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body border-0 text-center">
+                    <h4 class="card-title">No Uploads</h4>
+                </div>
+            </div>
         </div>
     </div>
 </div>
