@@ -23,7 +23,7 @@
             <div class="con" *ngFor="let house of houses">
                 <a (click)="onSelect(house.id)" class="img-link">
                     <img [src]="house.image" alt="" class="house-image">
-                    <h5 class="img-name mt-2">{{ house.type }}</h5>
+                    <h5 class="img-name mt-2 text-primary">{{ house.type }}</h5>
                 </a>
                 <p class="text-justify">{{ house.description.slice(0, 100) }}...</p>
             </div>
