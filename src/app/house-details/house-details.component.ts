@@ -2,12 +2,41 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-house-details',
   templateUrl: './house-details.component.html',
-  styleUrls: ['./house-details.component.css']
+  styleUrls: ['./house-details.component.css'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('liked', style({
+        fontSize: '30px',
+        opacity: 1,
+        color: 'red'
+      })),
+      state('normal', style({
+        fontSize: '25px',
+        opacity: 0.5,
+        color: '#fff'
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 export class HouseDetailsComponent implements OnInit {
 
@@ -19,7 +48,7 @@ export class HouseDetailsComponent implements OnInit {
   public likes?;
   user;
   recentlyLiked;
-  liked;
+  liked =  false;
 
   constructor(private route: ActivatedRoute, private auth: AuthService, private formBuilder: FormBuilder) {
     this.commentForm = this.formBuilder.group({
@@ -48,7 +77,6 @@ export class HouseDetailsComponent implements OnInit {
     })
 
     this.getLikes(id);
-    console.log(this.likes?.length, "count");
     
   }
 
@@ -81,5 +109,4 @@ export class HouseDetailsComponent implements OnInit {
       this.likes = res;
     })
   }
-
 }

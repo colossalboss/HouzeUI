@@ -1,3 +1,6 @@
-.footer {
+#footer {
     position: absolute;
+    width: 100% !important;
+    height: 1rem;
+    bottom: 0;
 }

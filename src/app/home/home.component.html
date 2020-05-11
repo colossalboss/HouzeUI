@@ -18,6 +18,19 @@
             </div>
         </div>
 
+        <div class="container">
+            <div class="row text-center m-4" *ngIf="!houses">
+                <div class="col-md-4 offset-md-4">
+                    <div class="app-loading m-4">
+                        <div class="logo"></div>
+                        <svg class="spinner" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-12 px-0 houses-con">
 
             <div class="con" *ngFor="let house of houses">
