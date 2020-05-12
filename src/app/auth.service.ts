@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from './user';
+import { UserDetails } from './UserDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +13,15 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   result: string;
+  private user = new BehaviorSubject<User>(new UserDetails());
+  userDetails = this.user.asObservable();
 
   get isAuthenticated() {
     return !!localStorage.getItem("token");
+  }
+
+  loggedUser(userDetails) {
+    this.user.next(userDetails);
   }
 
   register(userDetails) {
@@ -34,6 +42,12 @@ export class AuthService {
 
   authenticate(res) {
     localStorage.setItem("token", res.tkn);
+
+    this.getUser().subscribe(res => {
+      this.loggedUser(res);
+      console.log(res, "logged");
+      
+    })
 
     this.router.navigate(['home']);
   }

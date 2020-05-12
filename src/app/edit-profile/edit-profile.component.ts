@@ -13,16 +13,17 @@ export class EditProfileComponent implements OnInit {
   userForm;
   user;
   userId;
+  imageUrl;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private auth: AuthService, private router: Router) { 
-    // this.userForm = this.formBuilder.group({
-    //   name: [this.user?.name, Validators.required],
-    //   email: [this.user?.email, Validators.required],
-    //   image: this.user?.image,
-    //   address: this.user?.address,
-    //   password: [this.user?.password, Validators.required],
-    //   confirmPassword: ['', Validators.required]
-    // })
+    this.userForm = this.formBuilder.group({
+      name: [this.user?.name, Validators.required],
+      email: [this.user?.email, Validators.required],
+      image: this.user?.image,
+      address: this.user?.address,
+      password: [this.user?.password, Validators.required],
+      confirmPassword: ['', Validators.required]
+    })
   }
 
   ngOnInit() {
@@ -64,6 +65,12 @@ export class EditProfileComponent implements OnInit {
       password: [user?.password, Validators.required],
       confirmPassword: ['', Validators.required]
     })
+    this.imageUrl = user.image;
+  }
+
+  previewImage(event) {
+    this.imageUrl = event.target.value;
+    console.log(event.target.value, "src");
   }
 
 }

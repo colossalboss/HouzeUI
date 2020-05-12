@@ -24,8 +24,14 @@ export class AppComponent implements OnInit {
 
   constructor(public auth: AuthService) { }
 
+  loggedInUserId;
+
   ngOnInit() {
     this.getUser();
+
+    this.auth.userDetails.subscribe(res => {
+      this.loggedInUserId = res.userId;
+    })
   }
 
   onPost() {

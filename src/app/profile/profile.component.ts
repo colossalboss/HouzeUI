@@ -11,15 +11,18 @@ export class ProfileComponent implements OnInit {
 
   houses;
   user;
+  loggedUserId;
 
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params.id;
+    this.loggedUserId = id;
     console.log(id, "id");
 
     this.getUserDetails(id);
     this.getHouses(id);
+
   }
 
   getHouses(id) {
@@ -41,8 +44,8 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['house', id]);
   }
 
-  edit(id) {
-    this.router.navigate(['/edit', this.user.id]);
+  edit() {
+    this.router.navigate(['/edit', this.loggedUserId]);
   }
 
 }
