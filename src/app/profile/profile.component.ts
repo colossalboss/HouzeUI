@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../user';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +14,9 @@ export class ProfileComponent implements OnInit {
   houses;
   user;
   loggedUserId;
+  editable;
+  profileOwner;
+  profileViewer;
 
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) { }
 
@@ -22,6 +27,8 @@ export class ProfileComponent implements OnInit {
 
     this.getUserDetails(id);
     this.getHouses(id);
+
+    this.buttonCheck(id);
 
   }
 
@@ -46,6 +53,22 @@ export class ProfileComponent implements OnInit {
 
   edit() {
     this.router.navigate(['/edit', this.loggedUserId]);
+  }
+
+  buttonCheck(id) {
+    this.auth.getUserById(id).subscribe(res => {
+      let profileOwner: any = res;
+      this.auth.getUser().subscribe( res => {
+        let profileViewer: any = res;
+        console.log(profileOwner.userId, profileViewer.userId)
+        if (profileOwner.userId === profileViewer.userId) {
+          this.editable = true;
+        } else {
+          this.editable = false;
+        }
+      });
+
+    });
   }
 
 }
