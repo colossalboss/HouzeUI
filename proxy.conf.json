@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "https://houze-api-7375.herokuapp.com/",
+      "secure": false
+    }
+  }
