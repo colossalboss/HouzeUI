@@ -27,6 +27,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.getUser().subscribe(res => this.auth.loggedUser(res));
+
     let id = this.route.snapshot.params.id;
     this.userId = id;
     console.log(this.userId, "userId");

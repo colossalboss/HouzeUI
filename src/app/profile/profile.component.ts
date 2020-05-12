@@ -21,6 +21,9 @@ export class ProfileComponent implements OnInit {
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.auth.getUser().subscribe(res => this.auth.loggedUser(res));
+
     let id = this.route.snapshot.params.id;
     this.loggedUserId = id;
     console.log(id, "id");

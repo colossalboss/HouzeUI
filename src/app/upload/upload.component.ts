@@ -25,6 +25,7 @@ export class UploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.auth.getUser().subscribe(res => this.auth.loggedUser(res));
   }
 
   onPost(houseDetails) {

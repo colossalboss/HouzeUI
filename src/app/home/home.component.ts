@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.auth.getUser().subscribe(res => this.auth.loggedUser(res));
+
     // this.getHouses();
     this.auth.getHouses().subscribe(res => {
       this.houses = res;

@@ -57,6 +57,9 @@ export class HouseDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    this.auth.getUser().subscribe(res => this.auth.loggedUser(res));
+
     let id = this.route.snapshot.params.id;
     this.selectedHouse = id;
     console.log(id, "id")
