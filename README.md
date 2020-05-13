@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
+## Description
+
+This app is the front end of the app, Houze. It interacts with a .net core API, another one of my projects, Houze-Dot-Net-Core-API. Basically, the app enables users (in this case students) to find accomodation in or close to their institution and users (landlords) who have apartments for rent can also upload details of the house and contact information for potential tennants
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
