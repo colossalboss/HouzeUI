@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this.getUser();
 
     this.auth.userDetails.subscribe(res => {
-      this.loggedInUserId = res.userId;
+      this.loggedInUserId = res?.userId;
     })
   }
 

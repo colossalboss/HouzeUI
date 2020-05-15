@@ -49,6 +49,7 @@ export class HouseDetailsComponent implements OnInit {
   user;
   recentlyLiked;
   liked =  false;
+  editable;
 
   constructor(private route: ActivatedRoute, private auth: AuthService, private formBuilder: FormBuilder) {
     this.commentForm = this.formBuilder.group({
@@ -67,12 +68,10 @@ export class HouseDetailsComponent implements OnInit {
     this.auth.getHouseById(id).subscribe(res => {
       this.house = res;
       console.log(this.house);
+      this.buttonCheck(this.house.appUserId);
     })
 
-    this.auth.getComments(Number(this.selectedHouse)).subscribe(res => {
-      this.comments = res;
-      console.log(res);
-    });
+    this.getComments(id);
 
     this.auth.getUser().subscribe(res => {
       this.user = res;
@@ -85,9 +84,18 @@ export class HouseDetailsComponent implements OnInit {
 
   onComment(comment) {
     comment.houseId = +this.selectedHouse;
-    console.log(comment);
+    console.log(this.comments);
     this.auth.postComment(comment).subscribe(res => this.justNowComment = res);
-    this.commentForm.message = '';
+    this.comments.push(comment);
+    this.getComments(comment.houseId);
+    this.commentForm.reset();
+  }
+
+  getComments(id) {
+    this.auth.getComments(id).subscribe(res => {
+      this.comments = res;
+      console.log(res);
+    });
   }
 
   onLike(id) {
@@ -111,5 +119,20 @@ export class HouseDetailsComponent implements OnInit {
     this.auth.getHouselikes(+id).subscribe(res => {
       this.likes = res;
     })
+  }
+
+  buttonCheck(id) {
+    this.auth.getUserById(id).subscribe(res => {
+      let profileOwner: any = res;
+      this.auth.getUser().subscribe( res => {
+        let profileViewer: any = res;
+        console.log(profileOwner.userId, profileViewer.userId)
+        if (profileOwner.userId === profileViewer.userId) {
+          this.editable = true;
+        } else {
+          this.editable = false;
+        }
+      });
+    });
   }
 }

@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditHouseComponent } from './edit-house/edit-house.component';
 
 
 
@@ -34,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HouseDetailsComponent,
     ProfileComponent,
     EditProfileComponent,
-    FooterComponent
+    FooterComponent,
+    EditHouseComponent
   ],
   imports: [
     BrowserModule,

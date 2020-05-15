@@ -53,6 +53,9 @@
                     <h4 class="mb-0">Address:</h4>
                     <p>{{ house?.address }}</p>
                 </div>
+                <div class="col-md-6">
+                    <a *ngIf="editable" [routerLink]="['/edit-house', house?.id]" title="Edit house details" class="h4"><i class="fa fa-pencil"> </i></a>
+                </div>
             </div>
 
             <div class="row">

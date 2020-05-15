@@ -112,7 +112,16 @@ export class AuthService {
   }
 
   updateUser(user) {
-    this.http.put(`https://houze-api-7375.herokuapp.com/api/users/${user.id}`, user).subscribe(res => console.log(res));
-    // this.http.put(`/api/users/${user.id}`, user).subscribe(res => console.log(res));
+    this.http.put(`https://houze-api-7375.herokuapp.com/api/users/${user.id}`, user).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['profile', user.userId]);
+
+    });
+  }
+
+  updateHouse(updatedHouse) {
+    this.http.put(`https://houze-api-7375.herokuapp.com/api/houses/${updatedHouse.id}`, updatedHouse).subscribe(res => {
+      this.router.navigate(['house', updatedHouse.id]);
+    });
   }
 }

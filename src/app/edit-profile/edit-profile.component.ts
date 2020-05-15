@@ -45,7 +45,6 @@ export class EditProfileComponent implements OnInit {
     
     this.auth.updateUser(userDetails);
     console.log(userDetails);
-    this.router.navigate(['profile', this.user]);
   }
 
   getUser(id) {
