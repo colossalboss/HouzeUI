@@ -20,6 +20,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditHouseComponent } from './edit-house/edit-house.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { StatsService } from './stats.service';
+
 
 
 
@@ -43,10 +46,12 @@ import { EditHouseComponent } from './edit-house/edit-house.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleChartsModule
   ],
   providers: [
     AuthService,
+    StatsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -56,4 +61,5 @@ import { EditHouseComponent } from './edit-house/edit-house.component';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
