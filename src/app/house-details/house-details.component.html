@@ -15,7 +15,7 @@
     
 
     <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-8 offset-md-2">
             <img [src]="house?.image" alt="House" style="width: 100%;" class="house-image mt-4">
             <div class="image-engagements py-2 bg-dark text-light">
                 <span class="comments font-weight-bold h4 mr-4"><i class="fa fa-comment cursor-pointer"></i> {{ comments?.length }}</span>
@@ -71,7 +71,7 @@
     <div class="row mt-4" id="comments">
 
         <div class="col-md-12">
-            <div class="card">
+            <div class="card border-0">
                 <div class="card-body py-0">
                     <h2>Comments</h2>
                 </div>
@@ -86,39 +86,46 @@
             </div>
         </div>
         
-        <div class="comment-con" *ngIf="comments?.length > 0">
-            <div class="col-md-12 " *ngFor="let comment of comments" style="width: 100%;">
-                <div class="card my-2">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-2 py-0 px-1">
-                                <img [src]="comment?.userImage" alt="Image" class="my-2 rounded-circle" style="width:90%;max-height: 100px;">
-                            </div>
-        
-                            <div class="col-10">
-                                <div class="card-body p-0">
-                                    <h5 class="card-title mb-0"><a [routerLink]="['/profile', comment?.owner]">{{ comment?.name }}</a></h5>
-                                    <p>{{ comment?.postTime }}</p>
-    
-                                    <p class="text-justify">
-                                        {{ comment?.message }}
-                                    </p>
+        <div class="row my-4">
+            <div class="col-md-7">
+                <div class="comment-con row" *ngIf="comments?.length > 0">
+                    <div class="col-md-12" *ngFor="let comment of comments" style="width: 100%;">
+                        <div class="card my-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 row">
+                                        <div class="col-2 py-0 px-1">
+                                            <img [src]="comment?.userImage" alt="Image" class="my-2 rounded-circle" style="width:90%;max-height: 100px;">
+                                        </div>
+                    
+                                        <div class="col-10">
+                                            <div class="card-body p-0">
+                                                <h5 class="card-title mb-0"><a [routerLink]="['/profile', comment?.owner]">{{ comment?.name }}</a></h5>
+                                                <p class="font-italic" style="font-size: 10px;"> {{ comment?.postTime }}</p>
+                                                <hr class="m-0">
+                
+                                                <p class="text-justify">
+                                                    <i class="fa fa-caret-right"></i> {{ comment?.message }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-12 mt-4">
-            <form [formGroup]="commentForm" (ngSubmit)="onComment(commentForm.value)">
-                <div class="form-group">
-                  <textarea type="text" class="form-control" id="message" formControlName="message" rows="6" placeholder="Your comment"></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary my-2" [disabled]="!commentForm.valid">Comment</button>
-              </form>
+            <div class="col-md-5 mt-4">
+                <form [formGroup]="commentForm" (ngSubmit)="onComment(commentForm.value)">
+                    <div class="form-group">
+                      <textarea type="text" class="form-control" id="message" formControlName="message" rows="6" placeholder="Your comment"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary my-2" [disabled]="!commentForm.valid">Comment</button>
+                  </form>
+            </div>
         </div>
         
     </div>
