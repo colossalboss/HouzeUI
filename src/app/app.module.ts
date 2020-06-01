@@ -20,7 +20,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditHouseComponent } from './edit-house/edit-house.component';
-import { GoogleChartsModule } from 'angular-google-charts';
+// import { GoogleChartsModule } from 'angular-google-charts';
 // import { StatsService } from './stats.service';
 
 
@@ -46,8 +46,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    GoogleChartsModule
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
